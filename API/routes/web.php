@@ -26,3 +26,6 @@ Route::post('user/validate/', array('as' => 'validatebio', 'uses' => 'ApiBiometr
 
 //servicioprueba
 Route::get('/servicioprueba', array('as' => 'servicioprueba', 'uses' => 'ApiBiometricCOntroller@servicioprueba'));
+
+//getalldata
+Route::get('/getalldata', array('as' => 'getalldata', 'uses' => 'ApiBiometricCOntroller@getalldata'));
