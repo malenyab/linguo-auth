@@ -10,20 +10,21 @@ class ApiBiometricCOntroller extends Controller
         $audio = $request->audio;
         $imei = $request->imei;
         $userId = $request->userId;
-
+        $procedure = \DB::select('CALL usp_biometric_credentials_save(?,?,?)',[1,"FingerPrint","textVoice"]);
+        //p_fingerprint
+        //textp_voice
+        return json_encode($procedure);
     }
 
     public function getbio(Request $request){
-        $audio = $request->audio;
-        $imei = $request->imei;
         $userId = $request->userId;
-
+        $procedure = \DB::select('CALL usp_biometric_credentials_get(?)',[$userId]);
+        return json_encode($procedure);
     }
 
     public function validatebio(Request $request){
-        $audio = $request->audio;
-        $imei = $request->imei;
-        $userId = $request->userId;
+        $audioGetIt = $request->audio;
+        $audioBD = $request->imei;
 
     }
 
