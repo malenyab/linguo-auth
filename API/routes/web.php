@@ -14,3 +14,15 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+//URL FOR SAVED THE BIOMETRIC DATA REGISTER
+Route::get('user/saveregister', array('as' => 'registerbio', 'uses' => 'ApiBiometricCOntroller@savedregister'));
+
+//URL FOR GET THE BIOMETRIC DATA FROM SPECIFIC USER
+Route::post('user/get/', array('as' => 'getbio', 'uses' => 'ApiBiometricCOntroller@getbio'));
+
+//URL FOR VALIDATE
+Route::post('user/validate/', array('as' => 'validatebio', 'uses' => 'ApiBiometricCOntroller@validatebio'));
+
+//servicioprueba
+Route::get('/servicioprueba', array('as' => 'servicioprueba', 'uses' => 'ApiBiometricCOntroller@servicioprueba'));
