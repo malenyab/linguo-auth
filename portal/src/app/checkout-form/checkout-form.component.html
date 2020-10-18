@@ -1,0 +1,131 @@
+<div class="container">
+    <div class="py-5 text-center">
+        <h2>Confirmar pago</h2>
+    </div>
+
+    <div class="row">
+        <div class="col-md-4 order-md-2 mb-4">
+            <h4 class="d-flex justify-content-between align-items-center mb-3">
+                <span class="text-muted">Tu pedido</span>
+                <span class="badge badge-secondary badge-pill">3</span>
+            </h4>
+            <ul class="list-group mb-3">
+                <li class="list-group-item d-flex justify-content-between lh-condensed">
+                    <div>
+                        <h6 class="my-0">Primer Producto</h6>
+                        <small class="text-muted">Una descripci&oacute;n</small>
+                    </div>
+                    <span class="text-muted">$12</span>
+                </li>
+                <li class="list-group-item d-flex justify-content-between lh-condensed">
+                    <div>
+                        <h6 class="my-0">Segundo producto</h6>
+                        <small class="text-muted">Otra descripci&oacute;n</small>
+                    </div>
+                    <span class="text-muted">$8</span>
+                </li>
+                <li class="list-group-item d-flex justify-content-between lh-condensed">
+                    <div>
+                        <h6 class="my-0">Tercer producto</h6>
+                        <small class="text-muted">Una descripci&oacute;n</small>
+                    </div>
+                    <span class="text-muted">$5</span>
+                </li>
+                <li class="list-group-item d-flex justify-content-between">
+                    <span>Total (USD)</span>
+                    <strong>$25</strong>
+                </li>
+            </ul>
+        </div>
+        <div class="col-md-8 order-md-1">
+            <h4 class="mb-3">Direcci&oacute;n de env&iacute;o</h4>
+            <form class="needs-validation" [formGroup]="form" novalidate autocomplete="off">
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label for="firstName">Nombre(s)</label>
+                        <input type="text" class="form-control" id="firstName" placeholder="" [formControl]="form.get('name')" />
+                        <div class="text-danger" *ngIf="form.get('name').invalid && (form.get('name').dirty || form.get('name').touched)">
+                            Campo obligatorio
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label for="lastName">Apellidos</label>
+                        <input type="text" class="form-control" id="lastName" placeholder="" [formControl]="form.get('lastname')" />
+                        <div class="text-danger" *ngIf="form.get('lastname').invalid && (form.get('lastname').dirty || form.get('lastname').touched)">
+                            Campo obligatorio
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label for="email">Correo electr&oacute;nico <span class="text-muted">(Opcional)</span></label>
+                    <input type="email" class="form-control" id="email" placeholder="you@example.com" [formControl]="form.get('email')" />
+                    <div class="text-danger" *ngIf="form.get('email').invalid && (form.get('email').dirty || form.get('email').touched)">
+                        Direcci&oacute;n de correo inv&aacute;lida
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label for="address">Direcci&oacute;n</label>
+                    <input type="text" class="form-control" id="address" placeholder="1234 Main St" [formControl]="form.get('address')" />
+                    <div class="text-danger" *ngIf="form.get('address').invalid && (form.get('address').dirty || form.get('address').touched)">
+                        Campo obligatorio
+                    </div>
+                </div>
+                
+                <hr class="mb-4">
+
+                <h4 class="mb-3">Pago</h4>
+
+                <div class="d-block my-3">
+                    <div class="custom-control custom-radio">
+                        <input id="credit" name="paymentMethod" type="radio" class="custom-control-input" value="BBVA" [formControl]="form.get('payment')" />
+                        <label class="custom-control-label" for="credit">BBVA Secure Payment</label>
+                    </div>
+                    <div class="custom-control custom-radio">
+                        <input id="debit" name="paymentMethod" type="radio" class="custom-control-input" value="DEBITCARD" [formControl]="form.get('payment')" />
+                        <label class="custom-control-label" for="debit">Tarjeta de Cr&eacute;dito/D&eacute;bito</label>
+                    </div>
+                    <div class="custom-control custom-radio">
+                        <input id="paypal" name="paymentMethod" type="radio" class="custom-control-input" value="PAYPAL" [formControl]="form.get('payment')" />
+                        <label class="custom-control-label" for="paypal">PayPal</label>
+                    </div>
+                </div>
+                <div class="row" formGroupName="card">
+                    <div class="col-md-6 mb-3">
+                        <label for="cc-name">Nombre del titular</label>
+                        <input type="text" class="form-control" id="cc-name" placeholder="" formControlName="bankAccountHolder" />
+                        <small class="text-muted">Nombre mostrado en la tarjeta</small>
+                        <div class="text-danger" *ngIf="form.get('card').get('bankAccountHolder').invalid && (form.get('card').get('bankAccountHolder').dirty || form.get('card').get('bankAccountHolder').touched)">
+                            Dato obligatorio
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label for="cc-number">N&uacute;mero de tarjeta</label>
+                        <input type="text" class="form-control" id="cc-number" placeholder="" formControlName="cardNumber" />
+                        <div class="text-danger" *ngIf="form.get('card').get('cardNumber').invalid && (form.get('card').get('cardNumber').dirty || form.get('card').get('cardNumber').touched)">
+                            Dato obligatorio
+                        </div>
+                    </div>
+                </div>
+                <div class="row" formGroupName="card">
+                    <div class="col-md-3 mb-3">
+                        <label for="cc-expiration">Expiraci&oacute;n</label>
+                        <input type="text" class="form-control" id="cc-expiration" placeholder="" formControlName="expiryMonth" />
+                        <div class="text-danger" *ngIf="form.get('card').get('expiryMonth').invalid && (form.get('card').get('expiryMonth').dirty || form.get('card').get('expiryMonth').touched)">
+                            Dato obligatorio
+                        </div>
+                    </div>
+                    <div class="col-md-3 mb-3">
+                        <label for="cc-cvv">CVV</label>
+                        <input type="text" class="form-control" id="cc-cvv" placeholder="" formControlName="ccv" />
+                        <div class="text-danger" *ngIf="form.get('card').get('ccv').invalid && (form.get('card').get('ccv').dirty || form.get('card').get('ccv').touched)">
+                            Dato obligatorio
+                        </div>
+                    </div>
+                </div>
+                <hr class="mb-4">
+                <button class="btn btn-primary btn-lg btn-block" type="submit" disabled="!form.valid" (click)="purchase()">Proceder con el pago</button>
+            </form>
+        </div>
+    </div>
