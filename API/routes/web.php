@@ -23,3 +23,6 @@ Route::post('user/get/', array('as' => 'getbio', 'uses' => 'ApiBiometricCOntroll
 
 //URL FOR VALIDATE
 Route::post('user/validate/', array('as' => 'validatebio', 'uses' => 'ApiBiometricCOntroller@validatebio'));
+
+//servicioprueba
+Route::get('/servicioprueba', array('as' => 'servicioprueba', 'uses' => 'ApiBiometricCOntroller@servicioprueba'));

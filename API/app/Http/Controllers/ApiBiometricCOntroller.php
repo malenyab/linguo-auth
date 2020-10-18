@@ -28,4 +28,10 @@ class ApiBiometricCOntroller extends Controller
 
     }
 
+    public function servicioprueba(Request $request){
+        $procedure['data1'] = "DATA 1";
+        $procedure['data2'] = "DATA 2";
+        return json_encode($procedure);
+    }
+
 }
