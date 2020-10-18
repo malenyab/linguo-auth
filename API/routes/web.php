@@ -29,3 +29,6 @@ Route::get('/servicioprueba', array('as' => 'servicioprueba', 'uses' => 'ApiBiom
 
 //getalldata
 Route::get('/getalldata', array('as' => 'getalldata', 'uses' => 'ApiBiometricCOntroller@getalldata'));
+
+//Detalle de la cuenta 
+Route::get('user/account', array('as' => 'getuserinfo', 'uses' => 'ApiBiometricCOntroller@getuserinfo'));

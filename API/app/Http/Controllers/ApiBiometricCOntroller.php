@@ -53,7 +53,26 @@ class ApiBiometricCOntroller extends Controller
         return json_encode($procedure);
     }
 
+    public function getuserinfo(Request $request){
+        /*$userId = 1; //$request->userId;
+        $procedure = \DB::select('CALL usp_user_get(?)',[$userId]);
+        return json_encode($procedure);*/
 
+        $userId = 1;
+        $db = \DB::connection();
+        $stmt = $db->getPdo()->prepare("CALL usp_user_get(?)");
+        $stmt->execute([1]);
+        $i = 0;
+        do { $rowset = $stmt->fetchAll(\PDO::FETCH_ASSOC);
+            if ($rowset && $i==0) {
+                $i++;
+            }elseif ($rowset && $i==1) {
+                $procedure = $rowset; $i++;
+            }
+        }while ($stmt->nextRowset());
+
+        return json_encode($procedure);
+    }
 
     public function enviarNotificacion() {
         // Cargamos los datos de la notificacion en un Array
